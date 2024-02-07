@@ -71,6 +71,7 @@
     <Content Include="Content\CSS\pagination.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="PokeDetail.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +98,13 @@
     </Compile>
     <Compile Include="MyMaster.Master.designer.cs">
       <DependentUpon>MyMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PokeDetail.aspx.cs">
+      <DependentUpon>PokeDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PokeDetail.aspx.designer.cs">
+      <DependentUpon>PokeDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
