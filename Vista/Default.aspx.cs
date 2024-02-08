@@ -17,11 +17,7 @@ namespace Vista
         {
             if (!IsPostBack)
             {
-                // Esto verifica si ya existe una lista de Pokemons en sesión
-                if (!(Session["Pokemons"] != null))
-                {
-                    Session["Pokemons"] = PokemonBBL.GetPokemons();
-                }
+                Session["Pokemons"] = PokemonBBL.GetPokemons();
             }
 
             Pokemons = (List<Pokemon>)Session["Pokemons"];

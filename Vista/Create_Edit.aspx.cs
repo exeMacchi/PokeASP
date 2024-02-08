@@ -46,8 +46,10 @@ namespace Vista
                         txbxDescription.Text = pokeMOD.Description;
 
                         ddlType.SelectedValue = pokeMOD.Type.ID.ToString();
-                        Session["Weakness"] = pokeMOD.Weakness.ID.ToString();
                         ddlType_SelectedIndexChanged(sender, e);
+                        // Se selecciona el ddlWeakness según el ID del elemento de debilidad
+                        // del pokemon seleccionado
+                        ddlWeakness.SelectedIndex = ddlWeakness.Items.IndexOf(ddlWeakness.Items.FindByValue(pokeMOD.Weakness.ID.ToString()));
 
                         txbxUrl.Text = pokeMOD.UrlImage;
                         txbxUrl_TextChanged(sender, e);
@@ -100,14 +102,6 @@ namespace Vista
                 ddlType.Items.Remove(ddlType.Items.FindByValue("0"));
                 VerifyInformation(sender, e);
             }
-
-            // Si se está modificando un pokemon
-            if (Request.QueryString["id"] != null)
-            {
-                // Se selecciona el ddlWeakness según el ID del elemento de debilidad del
-                // pokemon seleccionado
-                ddlWeakness.SelectedIndex = ddlWeakness.Items.IndexOf(ddlWeakness.Items.FindByValue(Session["Weakness"].ToString()));
-            }
         }
 
         /// <summary>
@@ -133,7 +127,32 @@ namespace Vista
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            // TODO: lógica de agregar un nuevo pokemon en la DB
+            int number = int.Parse(txbxNumber.Text);
+            if (!PokemonBBL.NumberExistsInDB(number))
+            {
+                string name = txbxName.Text;
+                string description = txbxDescription.Text;
+                string urlImage = txbxUrl.Text;
+                string type = ddlType.SelectedItem.Text;
+                int idType = int.Parse(ddlType.SelectedValue);
+                string weakness = ddlWeakness.SelectedItem.Text;
+                int idWeakness = int.Parse(ddlWeakness.SelectedValue);
+
+                Pokemon newPoke = new Pokemon();
+                newPoke.Number = number;
+                newPoke.Name = name;
+                newPoke.Description = description;
+                newPoke.UrlImage = urlImage;
+                newPoke.Type = new Elemento(idType, type);
+                newPoke.Weakness = new Elemento(idWeakness, weakness);
+
+                PokemonBBL.CreatePokemon(newPoke);
+                Response.Redirect("Admin.aspx", false);
+            }
+            else
+            {
+                // Ya existe
+            }
         }
     }
 }

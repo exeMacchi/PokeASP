@@ -8,7 +8,7 @@
         <h1 class="text-center">Pokedex Web</h1>
     </div>
 
-    <div class="row justify-content-between gap-3">
+    <div class="row justify-content-between gap-3 my-4">
             <asp:Repeater ID="PokeCards" runat="server">
                 <ItemTemplate>
                     <div class="card" style="width: 18rem;">

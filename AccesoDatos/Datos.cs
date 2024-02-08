@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AccesoDatos
 {
@@ -54,9 +55,22 @@ namespace AccesoDatos
         /// </summary>
         /// <param name="param">@Parámetro.</param>
         /// <param name="value">Valor del parámetro.</param>
-        public void SetParametro(string param, object value)
+        public void SetParam(string param, object value)
         {
             command.Parameters.AddWithValue(param, value);
+        }
+
+        /// <summary>
+        /// Configurar el parámetro de salida de una consulta SQL.
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns>SqlParameter</returns>
+        public SqlParameter SetOutputParam(string param)
+        {
+            SqlParameter output = new SqlParameter(param, SqlDbType.Bit);
+            output.Direction = ParameterDirection.Output;
+            command.Parameters.Add(output);
+            return output;
         }
 
 
