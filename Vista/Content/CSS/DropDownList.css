@@ -1,0 +1,7 @@
+﻿.form-select:hover {
+    cursor: pointer;
+}
+
+.form-option--placeholder {
+    display: none;
+}

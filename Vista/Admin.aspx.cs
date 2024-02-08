@@ -32,10 +32,23 @@ namespace Vista
             }
         }
 
+        /// <summary>
+        /// Evento que ocurre cuando se cambia de página (paginación activada)
+        /// </summary>
         protected void gvPokemons_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvPokemons.PageIndex = e.NewPageIndex;
             gvPokemons.DataBind();
+        }
+
+        /// <summary>
+        /// Evento que se lanza cuando se quiere modificar un pokemon.
+        /// </summary>
+        protected void gvPokemons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Acceder al DataKeyNames del GridView
+            string id = gvPokemons.SelectedDataKey.Value.ToString();
+            Response.Redirect($"Create_Edit.aspx?id={id}", false);
         }
     }
 }

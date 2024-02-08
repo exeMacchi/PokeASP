@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-6 d-flex justify-content-end">
-            <asp:Button ID="btAdd" runat="server" CssClass="btn btn-danger fs-5" Text="Agregar nuevo pokemon"/>
+            <a href="Create_Edit.aspx" class="btn btn-danger fs-5">Agregar nuevo Pokemon</a>
         </div>
     </div>
 
@@ -34,7 +34,8 @@
                            HeaderStyle-CssClass="table-dark text-center"
                            RowStyle-CssClass="table-light align-middle"
                            AutoGenerateColumns="false"
-                           DataKeyNames="ID">
+                           DataKeyNames="ID"
+                           OnSelectedIndexChanged="gvPokemons_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField HeaderText="Número" DataField="Number" ItemStyle-CssClass="text-center"/>
                 <asp:BoundField HeaderText="Nombre" DataField="Name"/>

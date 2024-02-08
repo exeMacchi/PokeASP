@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class ElementoBBL
     {
-        public List<Elemento> GetElements()
+        public static List<Elemento> GetElements()
         {
             List<Elemento> elements = new List<Elemento>();
             Datos data = new Datos();
