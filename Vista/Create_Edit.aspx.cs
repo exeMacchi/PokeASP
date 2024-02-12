@@ -43,6 +43,8 @@ namespace Vista
                         Pokemon pokeMOD = PokemonBBL.GetPokemon(int.Parse(Request.QueryString["id"]));
                         txbxName.Text = pokeMOD.Name;
                         txbxNumber.Text = pokeMOD.Number.ToString();
+                        // Objeto en sesión que me ayuda en la verificación del cambio de número
+                        Session["NumberPokemon"] = pokeMOD.Number;
                         txbxDescription.Text = pokeMOD.Description;
 
                         ddlType.SelectedValue = pokeMOD.Type.ID.ToString();
@@ -122,7 +124,38 @@ namespace Vista
 
         protected void btnModify_Click(object sender, EventArgs e)
         {
-            // TODO: lógica para modificar un pokemon en la DB
+            int number = int.Parse(txbxNumber.Text);
+
+            // Si se modificó el número del Pokemon y este ya existe en la base de datos
+            if ((int)Session["NumberPokemon"] != number && PokemonBBL.NumberExistsInDB(number))
+            {
+                errorText.Text = "El número introducido ya existe en la base de datos. Por favor, introduzca uno nuevo.";
+                errorAlert.Visible = true;
+                txbxNumber.Focus();
+                return;
+            }
+
+            string name = txbxName.Text;
+            string description = txbxDescription.Text;
+            string urlImage = txbxUrl.Text;
+            string type = ddlType.SelectedItem.Text;
+            int idType = int.Parse(ddlType.SelectedValue);
+            string weakness = ddlWeakness.SelectedItem.Text;
+            int idWeakness = int.Parse(ddlWeakness.SelectedValue);
+            int id = int.Parse(Request.QueryString["id"]);
+
+            Pokemon uPoke = new Pokemon();
+            uPoke.ID = id;
+            uPoke.Number = number;
+            uPoke.Name = name;
+            uPoke.Description = description;
+            uPoke.UrlImage = urlImage;
+            uPoke.Type = new Elemento(idType, type);
+            uPoke.Weakness = new Elemento(idWeakness, weakness);
+
+            PokemonBBL.UpdatePokemon(uPoke);
+            Session["AlertMessage"] = "El Pokemon fue modificado en la base de datos de forma exitosa.";
+            Response.Redirect("Admin.aspx?alert=success", false);
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -147,11 +180,14 @@ namespace Vista
                 newPoke.Weakness = new Elemento(idWeakness, weakness);
 
                 PokemonBBL.CreatePokemon(newPoke);
-                Response.Redirect("Admin.aspx", false);
+                Session["AlertMessage"] = "El Pokemon fue creado en la base de datos de forma exitosa!";
+                Response.Redirect("Admin.aspx?alert=success", false);
             }
             else
             {
-                // Ya existe
+                errorText.Text = "El número introducido ya existe en la base de datos. Por favor, introduzca uno nuevo.";
+                errorAlert.Visible = true;
+                txbxNumber.Focus();
             }
         }
     }

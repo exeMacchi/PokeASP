@@ -9,9 +9,16 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <asp:ScriptManager runat="server"></asp:ScriptManager>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
+            <!-- Alerta de error -->
+            <asp:Panel ID="errorAlert" runat="server" CssClass="alert alert-danger my-4" Visible="false">
+                <h2 class="alert-heading fs-2">¡Ups!</h2>
+                <asp:Label ID="errorText" runat="server" Text=""></asp:Label>
+            </asp:Panel>
+
             <div class="row my-4">
                 <div class="col-6 d-flex flex-column gap-3 justify-content-between">
                     <!-- Nombre -->

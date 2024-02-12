@@ -132,5 +132,30 @@ namespace Negocio
                 data.CloseConnection();
             }
         }
+
+        public static void UpdatePokemon(Pokemon poke)
+        {
+            Datos data = new Datos();
+            try
+            {
+                data.SetProcedure("spUpdatePokemon");
+                data.SetParam("@Number", poke.Number);
+                data.SetParam("@Name", poke.Name);
+                data.SetParam("@Description", poke.Description);
+                data.SetParam("@Image", poke.UrlImage);
+                data.SetParam("@IDType", poke.Type.ID);
+                data.SetParam("@IDWeakness", poke.Weakness.ID);
+                data.SetParam("@ID", poke.ID);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally 
+            { 
+                data.CloseConnection(); 
+            }
+        }
     }
 }

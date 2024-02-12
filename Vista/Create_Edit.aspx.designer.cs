@@ -15,6 +15,24 @@ namespace Vista
     {
 
         /// <summary>
+        /// errorAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel errorAlert;
+
+        /// <summary>
+        /// errorText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorText;
+
+        /// <summary>
         /// txbxName control.
         /// </summary>
         /// <remarks>

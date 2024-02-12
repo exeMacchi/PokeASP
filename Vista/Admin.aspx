@@ -11,6 +11,17 @@
             <h1>Admin - Lista de pokemons</h1>
         </div>
     </div>
+
+    <% if (Request.QueryString["alert"] != null) { %>
+        <% if ((string)Request.QueryString["alert"] == "success") { %>
+            <asp:Panel ID="adminAlert" runat="server" CssClass="alert alert-success my-4">
+                <h2 class="alert-heading fs-2">¡Éxito!</h2>
+                <p><%:(string)Session["AlertMessage"] %></p>
+            </asp:Panel>
+        <% } else if ((string)Request.QueryString["alert"] == "error") { %>
+
+        <% } %>
+    <% } %>
     
     <div class="row">
         <div class="col-6 d-flex gap-3">
