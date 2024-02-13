@@ -8,7 +8,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row my-4 align-items-center">
         <div class="col-6">
-            <h1>Admin - Lista de pokemons</h1>
+            <h1>Admin - Lista de Pokémon</h1>
         </div>
     </div>
 
@@ -46,7 +46,8 @@
                            RowStyle-CssClass="table-light align-middle"
                            AutoGenerateColumns="false"
                            DataKeyNames="ID"
-                           OnSelectedIndexChanged="gvPokemons_SelectedIndexChanged">
+                           OnSelectedIndexChanged="gvPokemons_SelectedIndexChanged" 
+                           OnRowDeleting="gvPokemons_RowDeleting">
             <Columns>
                 <asp:BoundField HeaderText="Número" DataField="Number" ItemStyle-CssClass="text-center"/>
                 <asp:BoundField HeaderText="Nombre" DataField="Name"/>
@@ -58,5 +59,29 @@
             <PagerSettings Mode="NumericFirstLast" />
             <PagerStyle HorizontalAlign="Center" />
         </asp:GridView>
+    </div>
+
+    <!-- Trigger -->
+    <button id="btnDeletePokemon" type="button" style="display:none;" data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="border-bottom: none;">
+                    <h4 class="modal-title" id="deleteModalLabel">Confirmar eliminación</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        ¿Seguro que desea eliminar al Pokemon <asp:Label ID="lbDeletePokemon" CssClass="fw-bold" runat="server"></asp:Label>?
+                    </p>
+                </div>
+                <div class="modal-footer" style="border-top: none;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnDeleteConfirm" runat="server" CssClass="btn btn-danger" Text="Eliminar" OnClick="btnDeleteConfirm_Click"/>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>

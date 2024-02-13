@@ -11,6 +11,10 @@ namespace Negocio
 {
     public class PokemonBBL
     {
+        /// <summary>
+        /// Obtener todos los Pokemons activos desde la base de datos.
+        /// </summary>
+        /// <returns>Lista con todos los Pokemon activos en la base de datos.</returns>
         public static List<Pokemon> GetPokemons()
         {
             List<Pokemon> pokemons = new List<Pokemon>();
@@ -50,6 +54,11 @@ namespace Negocio
             }
         }
 
+        /// <summary>
+        /// Obtener un <see cref="Pokemon"/> desde la base de datos según un ID.
+        /// </summary>
+        /// <param name="id">ID del Pokemon que se desea obtener en la base de datos.</param>
+        /// <returns>Pokemon seleccionado.</returns>
         public static Pokemon GetPokemon(int id)
         {
             Datos data = new Datos();
@@ -86,6 +95,12 @@ namespace Negocio
             }
         }
 
+        /// <summary>
+        /// Verificar si en la base de datos el número de Pokemon pasado como argumento 
+        /// ya existe en la base de datos.
+        /// </summary>
+        /// <param name="number">Número de Pokemon.</param>
+        /// <returns>Booleano que determina si existe o no el número en la base de datos.</returns>
         public static bool NumberExistsInDB(int number)
         {
             Datos data = new Datos();
@@ -109,6 +124,10 @@ namespace Negocio
             }
         }
 
+        /// <summary>
+        /// Crear un nuevo <see cref="Pokemon"/> en la base de datos.
+        /// </summary>
+        /// <param name="newPoke"><see cref="Pokemon"/> con toda la información cargada.</param>
         public static void CreatePokemon(Pokemon newPoke)
         {
             Datos data = new Datos();
@@ -133,6 +152,10 @@ namespace Negocio
             }
         }
 
+        /// <summary>
+        /// Modificar un <see cref="Pokemon"/> seleccionado en la base de datos.
+        /// </summary>
+        /// <param name="poke"><see cref="Pokemon"/> con la información cargada.</param>
         public static void UpdatePokemon(Pokemon poke)
         {
             Datos data = new Datos();
@@ -155,6 +178,33 @@ namespace Negocio
             finally 
             { 
                 data.CloseConnection(); 
+            }
+        }
+
+        /// <summary>
+        /// Desactivar o activar un <see cref="Pokemon"/> en la base de datos.
+        /// Este método llama a un procedimiento almacenado que realiza la lógica
+        /// para activar o desactivar automáticamente.
+        /// </summary>
+        /// <param name="id">
+        /// ID del <see cref="Pokemon"/> que se desea activar o desactivar.
+        /// </param>
+        public static void DisableOrActivePokemon(int id)
+        {
+            Datos data = new Datos();
+            try
+            {
+                data.SetProcedure("spDisableOrActivePokemon");
+                data.SetParam("@ID", id);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
             }
         }
     }

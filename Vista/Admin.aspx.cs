@@ -46,5 +46,38 @@ namespace Vista
             string id = gvPokemons.SelectedDataKey.Value.ToString();
             Response.Redirect($"Create_Edit.aspx?id={id}", false);
         }
+
+        protected void gvPokemons_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string id = gvPokemons.DataKeys[e.RowIndex].Value.ToString();
+            string nombre = gvPokemons.Rows[e.RowIndex].Cells[1].Text;
+
+            lbDeletePokemon.Text = nombre;
+            btnDeleteConfirm.CommandArgument = id;
+
+            string script = @"<script type='text/javascript'>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    document.getElementById('btnDeletePokemon').click();
+                                });
+                              </script>";
+            ClientScript.RegisterStartupScript(this.GetType(), "ShowModalScript", script);
+        }
+
+        protected void btnDeleteConfirm_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(((Button)sender).CommandArgument);
+
+            try
+            {
+                PokemonBBL.DisableOrActivePokemon(id);
+                Session["AlertMessage"] = "El Pokemon fue eliminado de la base de datos de forma exitosa.";
+                Response.Redirect("Admin.aspx?alert=success", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
+        }
     }
 }
