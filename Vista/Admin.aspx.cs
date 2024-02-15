@@ -17,7 +17,19 @@ namespace Vista
         {
             if (!IsPostBack)
             {
-                Session["Pokemons"] = PokemonBBL.GetPokemons();
+                try
+                {
+                    Session["Pokemons"] = PokemonBBL.GetPokemons();
+                    if (PokemonBBL.VerifyInactives())
+                    {
+                        inactivePokemons.Visible = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                }
             }
 
             Pokemons = (List<Pokemon>)Session["Pokemons"];
@@ -70,7 +82,7 @@ namespace Vista
             try
             {
                 PokemonBBL.DisableOrActivePokemon(id);
-                Session["AlertMessage"] = "El Pokemon fue eliminado de la base de datos de forma exitosa.";
+                Session["AlertMessage"] = "El Pokemon fue eliminado de forma exitosa.";
                 Response.Redirect("Admin.aspx?alert=success", false);
             }
             catch (Exception ex)

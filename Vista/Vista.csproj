@@ -69,10 +69,13 @@
   <ItemGroup>
     <Content Include="Admin.aspx" />
     <Content Include="Content\CSS\DropDownList.css" />
+    <Content Include="Content\CSS\icons.css" />
     <Content Include="Content\CSS\pagination.css" />
+    <Content Include="Content\JS\lightbulb.js" />
     <Content Include="Create_Edit.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="InactivePoke.aspx" />
     <Content Include="PokeDetail.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -100,6 +103,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="InactivePoke.aspx.cs">
+      <DependentUpon>InactivePoke.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InactivePoke.aspx.designer.cs">
+      <DependentUpon>InactivePoke.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyMaster.Master.cs">
       <DependentUpon>MyMaster.Master</DependentUpon>

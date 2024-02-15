@@ -55,6 +55,48 @@ namespace Negocio
         }
 
         /// <summary>
+        /// Obtener todos los <see cref="Pokemon"/> inactivos desde la base de datos.
+        /// </summary>
+        /// <returns>Lista con todos los <see cref="Pokemon"/> inactivos.</returns>
+        public static List<Pokemon> GetInactivePokemons()
+        {
+            List<Pokemon> inactivePokemons = new List<Pokemon>();
+            Datos data = new Datos();
+
+            try
+            {
+                data.SetProcedure("spGetInactivePokemons");
+                data.ExecuteRead();
+                while (data.Reader.Read())
+                {
+                    Pokemon inactivePoke = new Pokemon();
+                    inactivePoke.ID = (int)data.Reader["ID"];
+                    inactivePoke.Number = (int)data.Reader["Number"];
+                    inactivePoke.Name = (string)data.Reader["Name"];
+                    inactivePoke.Description = (string)data.Reader["Description"];
+                    inactivePoke.UrlImage = (string)data.Reader["Image"];
+
+                    inactivePoke.Type = new Elemento((int)data.Reader["TypeID"], 
+                                                (string)data.Reader["Type"]);
+
+                    inactivePoke.Weakness = new Elemento((int)data.Reader["WeeknessID"], 
+                                                    (string)data.Reader["Weekness"]);
+
+                    inactivePokemons.Add(inactivePoke);
+                }
+                return inactivePokemons;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
+
+        /// <summary>
         /// Obtener un <see cref="Pokemon"/> desde la base de datos según un ID.
         /// </summary>
         /// <param name="id">ID del Pokemon que se desea obtener en la base de datos.</param>
@@ -113,6 +155,34 @@ namespace Negocio
                 data.ExecuteNonQuery();
                 existe = (bool)output.Value;
                 return existe;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
+
+        /// <summary>
+        /// Verificar si en la base de datos hay <see cref="Pokemon"/> inactivos.
+        /// Si los hay, este método devuelve <c>true</c>; en caso contrario
+        /// devuelve <c>false</c>.
+        /// </summary>
+        /// <returns>Valor booleano que indica si hay o no <see cref="Pokemon"/> inactivos.</returns>
+        public static bool VerifyInactives()
+        {
+            Datos data = new Datos();
+            bool inactives = false;
+            try
+            {
+                data.SetProcedure("spVerifyInactives");
+                SqlParameter output = data.SetOutputParam("@Result");
+                data.ExecuteNonQuery();
+                inactives = (bool)output.Value;
+                return inactives;
             }
             catch (Exception ex)
             {
@@ -195,6 +265,25 @@ namespace Negocio
             try
             {
                 data.SetProcedure("spDisableOrActivePokemon");
+                data.SetParam("@ID", id);
+                data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
+
+        public static void DeletePokemon(int id)
+        {
+            Datos data = new Datos();
+            try
+            {
+                data.SetProcedure("spDeletePokemon");
                 data.SetParam("@ID", id);
                 data.ExecuteNonQuery();
             }

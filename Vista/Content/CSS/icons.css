@@ -1,0 +1,12 @@
+﻿.bi {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.bi:hover {
+    transform: scale(1.2);
+}
+
+.bi-circle-half::before {
+    cursor: pointer;
+}

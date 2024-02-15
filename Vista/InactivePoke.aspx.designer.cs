@@ -11,7 +11,7 @@ namespace Vista
 {
 
 
-    public partial class Admin
+    public partial class InactivePoke
     {
 
         /// <summary>
@@ -51,22 +51,31 @@ namespace Vista
         protected global::System.Web.UI.WebControls.Label lbFind;
 
         /// <summary>
-        /// inactivePokemons control.
+        /// gvInactivePokemons control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink inactivePokemons;
+        protected global::System.Web.UI.WebControls.GridView gvInactivePokemons;
 
         /// <summary>
-        /// gvPokemons control.
+        /// lbReactivePokemon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPokemons;
+        protected global::System.Web.UI.WebControls.Label lbReactivePokemon;
+
+        /// <summary>
+        /// btnReactiveConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReactiveConfirm;
 
         /// <summary>
         /// lbDeletePokemon control.

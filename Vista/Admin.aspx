@@ -3,15 +3,10 @@
     <title>Admin - PokeApp</title>
     <!-- Estilos para la paginación -->
     <link rel="stylesheet" href="Content/CSS/pagination.css" />
+    <link rel="stylesheet" href="Content/CSS/icons.css" />
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row my-4 align-items-center">
-        <div class="col-6">
-            <h1>Admin - Lista de Pokémon</h1>
-        </div>
-    </div>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <% if (Request.QueryString["alert"] != null) { %>
         <% if ((string)Request.QueryString["alert"] == "success") { %>
             <asp:Panel ID="adminAlert" runat="server" CssClass="alert alert-success my-4">
@@ -22,18 +17,26 @@
 
         <% } %>
     <% } %>
+
+    <div class="row my-4 align-items-center">
+        <div class="col-6">
+            <h1>Admin - Lista de Pokémon</h1>
+        </div>
+    </div>
     
     <div class="row">
         <div class="col-6 d-flex gap-3">
             <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control" PlaceHolder="Buscar..."></asp:TextBox>
             <asp:Button ID="btFind" runat="server" CssClass="d-none"/>
             <asp:Label ID="lbFind" runat="server" AssociatedControlID="btFind" CssClass="btn btn-primary">
-                <i class="bi bi-search"></i>
+                <i class="bi bi-search fs-5"></i>
             </asp:Label>
         </div>
 
-        <div class="col-6 d-flex justify-content-end">
-            <a href="Create_Edit.aspx" class="btn btn-danger fs-5">Agregar nuevo Pokemon</a>
+        <div class="col-6 d-flex justify-content-end gap-3">
+            <asp:HyperLink ID="inactivePokemons" runat="server" NavigateUrl="~/InactivePoke.aspx"
+                           CssClass="btn btn-warning fs-5 w-50" Visible="false">Lista Pokémon inactivos</asp:HyperLink>
+            <a href="Create_Edit.aspx" class="btn btn-danger fs-5 w-50">Agregar nuevo Pokémon</a>
         </div>
     </div>
 
@@ -53,8 +56,10 @@
                 <asp:BoundField HeaderText="Nombre" DataField="Name"/>
                 <asp:BoundField HeaderText="Tipo" DataField="Type.Description" ItemStyle-CssClass="text-center" />
                 <asp:BoundField HeaderText="Debilidad" DataField="Weakness.Description" ItemStyle-CssClass="text-center" />
-                <asp:CommandField HeaderText="Editar" SelectText="" ShowSelectButton="true" ItemStyle-CssClass="text-center" ControlStyle-CssClass="bi bi-pencil-square text-danger fs-4"/>
-                <asp:CommandField HeaderText="Eliminar" DeleteText="" ShowDeleteButton="true" ItemStyle-CssClass="text-center" ControlStyle-CssClass="bi bi-trash-fill text-danger fs-4"/>
+                <asp:CommandField HeaderText="Editar" SelectText="" ShowSelectButton="true"
+                                  ItemStyle-CssClass="text-center" ControlStyle-CssClass="bi bi-pencil-square text-danger fs-4 w-50"/>
+                <asp:CommandField HeaderText="Eliminar" DeleteText="" ShowDeleteButton="true"
+                                  ItemStyle-CssClass="text-center" ControlStyle-CssClass="bi bi-trash-fill text-danger fs-4 w-50"/>
             </Columns>
             <PagerSettings Mode="NumericFirstLast" />
             <PagerStyle HorizontalAlign="Center" />
@@ -68,8 +73,8 @@
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header" style="border-bottom: none;">
-                    <h4 class="modal-title" id="deleteModalLabel">Confirmar eliminación</h4>
+                <div class="modal-header bg-danger" style="border-bottom: none;">
+                    <h4 class="modal-title text-white" id="deleteModalLabel">Confirmar eliminación</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

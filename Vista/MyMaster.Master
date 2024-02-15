@@ -17,7 +17,7 @@
         <!-- Header -->
         <header class="container-fluid bg-danger">
             <nav class="navbar navbar-expand container gap-3">
-                <a class="navbar-brand text-white" style="transform: rotate(-90deg); font-size: 60px;">
+                <a href="Default.aspx" class="navbar-brand text-white" style="transform: rotate(-90deg); font-size: 60px;">
                     <i class="bi bi-circle-half"></i>
                 </a>
                 <ul class="navbar-nav w-100 align-items-center gap-3">
@@ -31,12 +31,14 @@
                 <div class="navbar-nav justify-content-end bg-danger">
                     <div id="Carousel" class="col-2 carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <% foreach (Dominio.Pokemon poke in Pokemons) { %>
-                            <%    if (poke.ID <= 10) { %>
-                                     <div class="carousel-item <%= poke.ID == 1 ? "active" : "" %>">
-                                         <img src="<%: poke.UrlImage %>" class="d-block w-100" alt="Imagen de un pokemon">
-                                     </div>
-                            <%    } %>
+                            <% if (Pokemons.Count > 0) { %>
+                                <% foreach (Dominio.Pokemon poke in Pokemons) { %>
+                                <%    if (poke.Number <= 10) { %>
+                                         <div class="carousel-item <%= poke.Number == 1 ? "active" : "" %>">
+                                             <img src="<%: poke.UrlImage %>" class="d-block w-100" alt="Imagen de un pokemon">
+                                         </div>
+                                <%    } %>
+                                <% } %>
                             <% } %>
                         </div>
                     </div>

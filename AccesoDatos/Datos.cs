@@ -61,7 +61,7 @@ namespace AccesoDatos
         }
 
         /// <summary>
-        /// Configurar el parámetro de salida de una consulta SQL.
+        /// Configurar el parámetro de salida booleano de una consulta SQL.
         /// </summary>
         /// <param name="param"></param>
         /// <returns>SqlParameter</returns>

@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MyMaster.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Vista.Default" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>PokeApp</title>
+    <link rel="stylesheet" href="Content/CSS/icons.css"/>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row my-4">
-        <h1 class="text-center">Pokedex Web</h1>
+        <h1 class="text-center">Pokédex Web</h1>
     </div>
 
     <div class="row justify-content-between gap-3 my-4">
