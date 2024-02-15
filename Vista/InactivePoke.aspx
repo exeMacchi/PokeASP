@@ -4,17 +4,15 @@
     <title>Admin - Inactivos</title>
     <!-- Estilos para la paginación -->
     <link rel="stylesheet" href="Content/CSS/pagination.css" />
+    <!-- Estilos para los íconos -->
     <link rel="stylesheet" href="Content/CSS/icons.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row my-4 align-items-center">
-        <h1>Admin - Lista de Pokémon inactivos</h1>
-    </div>
-
     <% if (Request.QueryString["alert"] != null) { %>
         <% if ((string)Request.QueryString["alert"] == "success") { %>
-            <asp:Panel ID="adminAlert" runat="server" CssClass="alert alert-success my-4">
+            <asp:Panel ID="inactiveAlert" runat="server"
+                       CssClass="alert alert-success my-4">
                 <h2 class="alert-heading fs-2">¡Éxito!</h2>
                 <p><%:(string)Session["AlertMessage"] %></p>
             </asp:Panel>
@@ -22,18 +20,44 @@
 
         <% } %>
     <% } %>
+
+    <div class="row my-4 align-items-center">
+        <h1>Admin - Lista de Pokémon inactivos</h1>
+    </div>
     
     <div class="row">
+        <!-- Filtro -->
         <div class="col-6 d-flex gap-3">
-            <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control" PlaceHolder="Buscar..."></asp:TextBox>
+            <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"
+                         PlaceHolder="Buscar..." AutoPostBack="true"
+                         OnTextChanged="txtFilter_TextChanged"></asp:TextBox>
             <asp:Button ID="btFind" runat="server" CssClass="d-none"/>
-            <asp:Label ID="lbFind" runat="server" AssociatedControlID="btFind" CssClass="btn btn-primary">
-                <i class="bi bi-search"></i>
+            <asp:Label ID="lbFind" runat="server" AssociatedControlID="btFind"
+                       CssClass="btn btn-primary">
+                <i class="bi bi-search fs-5"></i>
             </asp:Label>
         </div>
     </div>
 
+    <!-- Alertas -->
     <div class="row">
+        <div class="col">
+            <!-- GridView vacío -->
+            <asp:Panel ID="alertEmptyGV" runat="server" CssClass="alert alert-primary my-4" Visible="false">
+                <h2 class="alert-heading">¡No se encontraron registros!</h2>
+                <p>No se encontró ningún Pokémon inactivo en la base de datos.<p>
+            </asp:Panel>
+
+            <!-- Pokemon not found -->
+            <asp:Panel ID="alertPokemonNotFound" runat="server" CssClass="alert alert-primary my-4" Visible="false">
+                <h2 class="alert-heading">Pokémon inactivo no encontrado</h2>
+                <p>No se ha encontrado ningún Pokémon inactivo con dicho criterio de búsqueda.<p>
+            </asp:Panel>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Tabla -->
          <asp:GridView ID="gvInactivePokemons"
                            runat="server"
                            CssClass="col table table-bordered my-4" 

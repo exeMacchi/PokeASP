@@ -3,6 +3,7 @@
     <title>Admin - PokeApp</title>
     <!-- Estilos para la paginación -->
     <link rel="stylesheet" href="Content/CSS/pagination.css" />
+    <!-- Estilos para los íconos -->
     <link rel="stylesheet" href="Content/CSS/icons.css" />
 </asp:Content>
 
@@ -25,14 +26,20 @@
     </div>
     
     <div class="row">
+        <!-- Filtro -->
         <div class="col-6 d-flex gap-3">
-            <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control" PlaceHolder="Buscar..."></asp:TextBox>
+            <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"
+                         PlaceHolder="Buscar por nombre..." AutoPostBack="true"
+                         OnTextChanged="txtFilter_TextChanged"></asp:TextBox>
+
             <asp:Button ID="btFind" runat="server" CssClass="d-none"/>
-            <asp:Label ID="lbFind" runat="server" AssociatedControlID="btFind" CssClass="btn btn-primary">
+            <asp:Label ID="lbFind" runat="server" AssociatedControlID="btFind"
+                       CssClass="btn btn-primary">
                 <i class="bi bi-search fs-5"></i>
             </asp:Label>
         </div>
 
+        <!-- Enlaces -->
         <div class="col-6 d-flex justify-content-end gap-3">
             <asp:HyperLink ID="inactivePokemons" runat="server" NavigateUrl="~/InactivePoke.aspx"
                            CssClass="btn btn-warning fs-5 w-50" Visible="false">Lista Pokémon inactivos</asp:HyperLink>
@@ -40,17 +47,36 @@
         </div>
     </div>
 
+    <!-- Alertas -->
     <div class="row">
+        <div class="col">
+            <!-- GridView vacío -->
+            <asp:Panel ID="alertEmptyGV" runat="server" CssClass="alert alert-primary my-4" Visible="false">
+                <h2 class="alert-heading">¡Ups! parece que no hay ningún Pokémon</h2>
+                <p>Añada algún Pokémon poder ver su información en un formato tabular.<p>
+            </asp:Panel>
+
+            <!-- Pokemon not found -->
+            <asp:Panel ID="alertPokemonNotFound" runat="server" CssClass="alert alert-primary my-4" Visible="false">
+                <h2 class="alert-heading">Pokémon no encontrado</h2>
+                <p>No se ha encontrado ningún Pokémon con dicho criterio de búsqueda.<p>
+            </asp:Panel>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <!-- Tabla -->
          <asp:GridView ID="gvPokemons"
-                           runat="server"
-                           CssClass="col table table-bordered my-4" 
-                           AllowPaging="true" PageSize="5" OnPageIndexChanging="gvPokemons_PageIndexChanging"
-                           HeaderStyle-CssClass="table-dark text-center"
-                           RowStyle-CssClass="table-light align-middle"
-                           AutoGenerateColumns="false"
-                           DataKeyNames="ID"
-                           OnSelectedIndexChanged="gvPokemons_SelectedIndexChanged" 
-                           OnRowDeleting="gvPokemons_RowDeleting">
+                       runat="server"
+                       CssClass="col table table-bordered my-4" 
+                       AllowPaging="true" PageSize="5" OnPageIndexChanging="gvPokemons_PageIndexChanging"
+                       HeaderStyle-CssClass="table-dark text-center"
+                       RowStyle-CssClass="table-light align-middle"
+                       AutoGenerateColumns="false"
+                       DataKeyNames="ID"
+                       OnSelectedIndexChanged="gvPokemons_SelectedIndexChanged" 
+                       OnRowDeleting="gvPokemons_RowDeleting">
             <Columns>
                 <asp:BoundField HeaderText="Número" DataField="Number" ItemStyle-CssClass="text-center"/>
                 <asp:BoundField HeaderText="Nombre" DataField="Name"/>
@@ -66,10 +92,9 @@
         </asp:GridView>
     </div>
 
+    <!-- Modal de eliminación lógica -->
     <!-- Trigger -->
     <button id="btnDeletePokemon" type="button" style="display:none;" data-bs-toggle="modal" data-bs-target="#deleteModal"></button>
-
-    <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

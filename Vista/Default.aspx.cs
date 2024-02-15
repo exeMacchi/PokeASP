@@ -11,21 +11,31 @@ namespace Vista
 {
     public partial class Default : System.Web.UI.Page
     {
-        public List<Pokemon> Pokemons { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Session["Pokemons"] = PokemonBBL.GetPokemons();
+                try
+                {
+                    Session["Pokemons"] = PokemonBBL.GetPokemons();
+
+                    if (((List<Pokemon>)Session["Pokemons"]).Count > 0)
+                    {
+                        PokeCards.DataSource = (List<Pokemon>)Session["Pokemons"];
+                        PokeCards.DataBind();
+                    }
+                    else
+                    {
+                        // Alerta de no registros
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw ex;
+                }
             }
 
-            Pokemons = (List<Pokemon>)Session["Pokemons"];
-            if (Pokemons.Count > 0)
-            {
-                PokeCards.DataSource = Pokemons;
-                PokeCards.DataBind();
-            }
         }
     }
 }

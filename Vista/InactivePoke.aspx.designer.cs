@@ -15,13 +15,13 @@ namespace Vista
     {
 
         /// <summary>
-        /// adminAlert control.
+        /// inactiveAlert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel adminAlert;
+        protected global::System.Web.UI.WebControls.Panel inactiveAlert;
 
         /// <summary>
         /// txtFilter control.
@@ -49,6 +49,24 @@ namespace Vista
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbFind;
+
+        /// <summary>
+        /// alertEmptyGV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alertEmptyGV;
+
+        /// <summary>
+        /// alertPokemonNotFound control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alertPokemonNotFound;
 
         /// <summary>
         /// gvInactivePokemons control.
