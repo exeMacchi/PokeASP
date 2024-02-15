@@ -33,13 +33,13 @@ namespace Vista
         protected global::System.Web.UI.WebControls.TextBox txtFilter;
 
         /// <summary>
-        /// btFind control.
+        /// btnFind control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btFind;
+        protected global::System.Web.UI.WebControls.Button btnFind;
 
         /// <summary>
         /// lbFind control.
@@ -51,6 +51,24 @@ namespace Vista
         protected global::System.Web.UI.WebControls.Label lbFind;
 
         /// <summary>
+        /// btnAdvanced control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdvanced;
+
+        /// <summary>
+        /// lbAdvanced control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAdvanced;
+
+        /// <summary>
         /// inactivePokemons control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,33 @@ namespace Vista
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink inactivePokemons;
+
+        /// <summary>
+        /// advancedPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel advancedPanel;
+
+        /// <summary>
+        /// ddlFirstCriteria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFirstCriteria;
+
+        /// <summary>
+        /// ddlSecondCriteria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSecondCriteria;
 
         /// <summary>
         /// alertEmptyGV control.

@@ -278,6 +278,11 @@ namespace Negocio
             }
         }
 
+        /// <summary>
+        /// Eliminar de forma física (permanente) un Pokémon seleccionado en la lista de
+        /// inactivos.
+        /// </summary>
+        /// <param name="id">ID del Pokémon inactivo que se desea eliminar.</param>
         public static void DeletePokemon(int id)
         {
             Datos data = new Datos();
@@ -286,6 +291,63 @@ namespace Negocio
                 data.SetProcedure("spDeletePokemon");
                 data.SetParam("@ID", id);
                 data.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
+
+        /// <summary>
+        /// Buscar en la base de datos todos los <see cref="Pokemon"/> que coincidan con un criterio
+        /// de búsqueda avanzada.
+        /// </summary>
+        /// <param name="condition">Condición de búsqueda que va después de la cláusula WHERE.</param>
+        /// <returns>Lista de <see cref="Pokemon"/> que cumpla con la condición de búsqueda.</returns>
+        public static List<Pokemon> SearchPokemons(string condition)
+        {
+            Datos data = new Datos();
+            List<Pokemon> filteredPokemons = new List<Pokemon>();
+            string query = @"SELECT P.Id AS ID, 
+                                    P.Numero AS Number,
+		                            P.Nombre AS Name, 
+		                            P.Descripcion AS Description, 
+		                            P.UrlImagen AS Image,
+		                            T.Id AS TypeID,
+		                            T.Descripcion AS Type,
+		                            D.Id AS WeeknessID,
+		                            D.Descripcion AS Weekness
+	                         FROM POKEMONS AS P
+	                         INNER JOIN ELEMENTOS AS T on P.IdTipo = T.Id 
+	                         INNER JOIN ELEMENTOS AS D on P.IdDebilidad = D.Id
+	                         WHERE P.Activo = 1 AND " + condition +
+	                         "ORDER BY P.Numero ASC;";
+            try
+            {
+                data.SetQuery(query);
+                data.ExecuteRead();
+                while (data.Reader.Read())
+                {
+                    Pokemon filteredPoke = new Pokemon();
+                    filteredPoke.ID = (int)data.Reader["ID"];
+                    filteredPoke.Number = (int)data.Reader["Number"];
+                    filteredPoke.Name = (string)data.Reader["Name"];
+                    filteredPoke.Description = (string)data.Reader["Description"];
+                    filteredPoke.UrlImage = (string)data.Reader["Image"];
+
+                    filteredPoke.Type = new Elemento((int)data.Reader["TypeID"], 
+                                                (string)data.Reader["Type"]);
+
+                    filteredPoke.Weakness = new Elemento((int)data.Reader["WeeknessID"], 
+                                                    (string)data.Reader["Weekness"]);
+
+                    filteredPokemons.Add(filteredPoke);
+                }
+                return filteredPokemons;
             }
             catch (Exception ex)
             {

@@ -29,13 +29,20 @@
         <!-- Filtro -->
         <div class="col-6 d-flex gap-3">
             <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"
-                         PlaceHolder="Buscar por nombre..." AutoPostBack="true"
-                         OnTextChanged="txtFilter_TextChanged"></asp:TextBox>
+                         PlaceHolder="Buscar por nombre..."></asp:TextBox>
 
-            <asp:Button ID="btFind" runat="server" CssClass="d-none"/>
-            <asp:Label ID="lbFind" runat="server" AssociatedControlID="btFind"
+            <!-- Buscar -->
+            <asp:Button ID="btnFind" runat="server" CssClass="d-none" OnClick="btnFind_Click"/>
+            <asp:Label ID="lbFind" runat="server" AssociatedControlID="btnFind"
                        CssClass="btn btn-primary">
                 <i class="bi bi-search fs-5"></i>
+            </asp:Label>
+
+            <!-- Avanzado -->
+            <asp:Button ID="btnAdvanced" runat="server" CssClass="d-none" OnClick="btnAdvanced_Click"/>
+            <asp:Label ID="lbAdvanced" runat="server" AssociatedControlID="btnAdvanced"
+                       CssClass="btn btn-primary">
+                <i class="bi bi-filter fs-5"></i>
             </asp:Label>
         </div>
 
@@ -46,6 +53,15 @@
             <a href="Create_Edit.aspx" class="btn btn-danger fs-5 w-50">Agregar nuevo Pokémon</a>
         </div>
     </div>
+
+    <!-- Filtro avanzado -->
+    <asp:Panel ID="advancedPanel" runat="server" CssClass="row my-3" Visible="false">
+        <div class="col-6 d-flex justify-content-between gap-3">
+            <asp:DropDownList ID="ddlFirstCriteria" runat="server" CssClass="form-select"
+                              AutoPostBack="true" OnSelectedIndexChanged="ddlFirstCriteria_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList ID="ddlSecondCriteria" runat="server" CssClass="form-select"></asp:DropDownList>
+        </div>
+    </asp:Panel>
 
     <!-- Alertas -->
     <div class="row">
