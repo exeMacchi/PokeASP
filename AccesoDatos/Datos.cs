@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace AccesoDatos
 {
@@ -21,8 +22,8 @@ namespace AccesoDatos
         // Constructor
         public Datos()
         {
-            connection = new SqlConnection("server=DESKTOP-FUV4AD1;" + 
-                                           "database=POKEDEX_DB;" + 
+            connection = new SqlConnection($"server={ConfigurationManager.AppSettings["DB_SERVER"]};" +
+                                           $"database={ConfigurationManager.AppSettings["DB_NAME"]};" + 
                                            "integrated security=true;");
             command = connection.CreateCommand();
         }
