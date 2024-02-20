@@ -12,9 +12,9 @@ namespace Dominio
         /// Crear la condición de búsqueda avanzada que se pondrá en la sección WHERE de la
         /// query que se realizará a la base de datos.
         /// </summary>
-        /// <param name="firstCriteria">Primer criterio de búsqueda (Nombre, Número, Tipo o Debilidad)</param>
-        /// <param name="secondCriteria">Segundo criterio de búsqueda (Comienza con, Termina con...)</param>
-        /// <param name="filterText">Texto de filtro de búsqueda que se inserta en el TextBox</param>
+        /// <param name="firstCriteria">Primer criterio de búsqueda (Nombre, Número, Tipo o Debilidad).</param>
+        /// <param name="secondCriteria">Segundo criterio de búsqueda (Comienza con, Termina con...).</param>
+        /// <param name="filterText">Texto de filtro de búsqueda que se inserta en el TextBox.</param>
         /// <returns>Condición completa para insertar como parámetro después de la cláusula WHERE.</returns>
         public static string CreateCondition(string firstCriteria, string secondCriteria, string filterText)
         {
@@ -33,6 +33,14 @@ namespace Dominio
             return condition;
         }
 
+        /// <summary>
+        /// Crear el criterio de búsqueda utilizando el operador adecuado según el contexto
+        /// (LIKE para búsqueda por texto, operadores de relacionales para los números).
+        /// </summary>
+        /// <param name="firstCriteria">Primer criterio de búsqueda (Nombre, Número, Tipo o Debilidad).</param>
+        /// <param name="secondCriteria">Segundo criterio de búsqueda (Comienza con, Termina con...).</param>
+        /// <param name="text">Texto de filtro de búsqueda que se inserta en el TextBox.</param>
+        /// <returns>Criterio de búsqueda completo que se agrega luego del campo a buscar.</returns>
         private static string CreateCriteria(string firstCriteria, string secondCriteria, string text)
         {
             string criteria = string.Empty;

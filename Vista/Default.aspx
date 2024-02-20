@@ -10,6 +10,13 @@
     </div>
 
     <div class="row justify-content-between gap-3 my-4">
+            <!-- Alerta de vacío -->
+            <asp:Panel ID="emptyAlert" runat="server" CssClass="alert alert-primary my-4" Visible="false">
+                <h2 class="alert-heading fs-2">¡Ups!</h2>
+                <p>Parece que no hay ningún Pokémon en la base de datos :(</p>
+            </asp:Panel>
+
+            <!-- Foreach aspx -->
             <asp:Repeater ID="PokeCards" runat="server">
                 <ItemTemplate>
                     <div class="card" style="width: 18rem;">

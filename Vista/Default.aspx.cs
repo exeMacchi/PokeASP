@@ -26,7 +26,7 @@ namespace Vista
                     }
                     else
                     {
-                        // Alerta de no registros
+                        emptyAlert.Visible = true;
                     }
                 }
                 catch (Exception ex)

@@ -75,7 +75,7 @@
                     <!-- Imagen -->
                     <div class="d-flex justify-content-center mt-auto">
                         <figure style="max-width:220px; margin:0">
-                            <asp:Image ID="imgPokemon" runat="server" ImageUrl="https://placehold.co/475.png?text=Pokemon" CssClass="w-100"/>
+                            <asp:Image ID="imgPokemon" runat="server" ImageUrl="https://placehold.co/475.png?text=Pokemon" CssClass="img-fluid"/>
                         </figure>
                     </div>
                 </div>

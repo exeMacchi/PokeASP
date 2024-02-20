@@ -17,6 +17,12 @@ namespace Vista
         {
             if (!IsPostBack)
             {
+                // Middleware necesario por si se entra a esta página desde la URL
+                if (Request.QueryString["id"] == null)
+                {
+                    Response.Redirect("Default.aspx");
+                }
+
                 int id = int.Parse(Request.QueryString["id"]);
                 Poke = PokemonBBL.GetPokemon(id);
             }

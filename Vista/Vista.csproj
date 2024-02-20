@@ -71,6 +71,7 @@
     <Content Include="Content\CSS\DropDownList.css" />
     <Content Include="Content\CSS\icons.css" />
     <Content Include="Content\CSS\pagination.css" />
+    <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\JS\lightbulb.js" />
     <Content Include="Create_Edit.aspx" />
     <Content Include="Default.aspx" />
