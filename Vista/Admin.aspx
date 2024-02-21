@@ -3,8 +3,6 @@
     <title>Admin - PokeApp</title>
     <!-- Estilos para la paginación -->
     <link rel="stylesheet" href="Content/CSS/pagination.css" />
-    <!-- Estilos para los íconos -->
-    <link rel="stylesheet" href="Content/CSS/icons.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

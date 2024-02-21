@@ -35,7 +35,6 @@ namespace Vista
                     throw ex;
                 }
             }
-
         }
     }
 }

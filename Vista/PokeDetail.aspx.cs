@@ -26,7 +26,6 @@ namespace Vista
                 int id = int.Parse(Request.QueryString["id"]);
                 Poke = PokemonBBL.GetPokemon(id);
             }
-
         }
     }
 }

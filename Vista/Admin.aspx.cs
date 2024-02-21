@@ -15,6 +15,12 @@ namespace Vista
         {
             if (!IsPostBack)
             {
+                // Middleware admin
+                if (!((Usuario)Session["UserSession"]).Admin)
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+
                 try
                 {
                     Session["Pokemons"] = PokemonBBL.GetPokemons();

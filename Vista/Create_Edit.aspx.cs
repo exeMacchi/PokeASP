@@ -13,9 +13,15 @@ namespace Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
+                // Middleware admin
+                if (!((Usuario)Session["userSession"]).Admin)
+                {
+                    Response.Redirect("Login.aspx", false);
+                }
+
+                try
                 {
                     // Cargar ddlType (tanto para agregar como modificar)
                     Session["Elements"] = ElementoBBL.GetElements();
@@ -24,7 +30,7 @@ namespace Vista
                     ddlType.DataValueField = "ID";
                     ddlType.DataBind();
 
-                    // Si se está creando un nuevo Pokemon
+                    // Si se está creando un nuevo Pokemon...
                     if (Request.QueryString["id"] == null)
                     {
                         btnAdd.Enabled = false;
@@ -36,7 +42,7 @@ namespace Vista
                         typePlaceholder.Attributes["class"] = "form-option--placeholder";
                         ddlType.Items.Insert(0, typePlaceholder);
                     }
-                    // Si se está modificando un Pokemon
+                    // Si se está modificando un Pokemon...
                     else
                     {
                         // Se cargan todos los campos según la información del pokemon seleccionado
@@ -57,11 +63,11 @@ namespace Vista
                         txbxUrl_TextChanged(sender, e);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex);
-                throw;
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex);
+                    throw;
+                }
             }
         }
 
