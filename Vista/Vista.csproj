@@ -78,6 +78,7 @@
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\InactivePoke.aspx" />
     <Content Include="Pages\Auth\Login.aspx" />
+    <Content Include="Pages\User\Contact.aspx" />
     <Content Include="Pages\User\PokeDetail.aspx" />
     <Content Include="Pages\Auth\Register.aspx" />
     <Content Include="Pages\User\UserFavorites.aspx" />
@@ -129,6 +130,13 @@
     </Compile>
     <Compile Include="MyMaster.Master.designer.cs">
       <DependentUpon>MyMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\User\PokeDetail.aspx.cs">
       <DependentUpon>PokeDetail.aspx</DependentUpon>

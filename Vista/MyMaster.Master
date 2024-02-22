@@ -17,6 +17,16 @@
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .nav-link {
+            color: var(--bs-light);
+            transition: color 0.5s ease-out;
+        }
+
+        .nav-link:hover {
+            color: var(--bs-grey-600);
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,35 +36,36 @@
                 <a href="/Default.aspx" class="navbar-brand text-white" style="transform: rotate(-90deg); font-size: 60px;">
                     <i class="bi bi-circle-half"></i>
                 </a>
-                <ul class="navbar-nav w-100 align-items-center gap-3">
-                    <li class="nav-item">
-                        <a href="/Default.aspx" class="nav-link text-white fs-5">INICIO</a>
+                <ul class="navbar-nav align-items-center gap-3">
+                    <li class="nav-item border-2 border-bottom">
+                        <a href="/Default.aspx" class="nav-link fs-5">Inicio</a>
                     </li>
                     <% if (Session["UserSession"] != null) { %>
-                        <li class="nav-item">
-                            <a href="/Pages/User/UserFavorites.aspx" class="nav-link text-white fs-5">FAVORITOS</a>
+                        <li class="nav-item border-2 border-bottom">
+                            <a href="/Pages/User/UserFavorites.aspx" class="nav-link fs-5">Favoritos</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/Pages/User/UserProfile.aspx" class="nav-link text-white fs-5">PERFIL</a>
+                        <li class="nav-item border-2 border-bottom">
+                            <a href="/Pages/User/UserProfile.aspx" class="nav-link fs-5">Perfil</a>
                         </li>
                         <% if (((Dominio.Usuario)Session["UserSession"]).Admin) { %>
-                            <li class="nav-item">
-                                <a href="/Pages/Admin/Admin.aspx" class="nav-link text-white fs-5">LISTADO POKÉMON</a>
+                            <li class="nav-item border-2 border-bottom">
+                                <a href="/Pages/Admin/Admin.aspx" class="nav-link fs-5">Listado Pokémon</a>
                             </li>
                         <% } %>
                     <% } %> 
                 </ul>
                 
 
-                <div class="navbar-nav bg-danger w-50 align-items-center justify-content-end gap-3">
+                <div class="navbar-nav bg-danger w-50 align-items-center justify-content-end gap-3 ms-auto">
                     <% if (Session["UserSession"] != null) { %>
                     <%  // El LinkButton evita que al apretar 'Enter' en el teclado, se ejecute el evento de deslogueo %>
-                        <asp:LinkButton ID="btnLogOut" runat="server" CssClass="btn btn-outline-light"
+                        <asp:LinkButton ID="btnLogOut" runat="server" CssClass="btn btn-outline-light fs-5 shadow"
                                         Text="Salir" OnClick="btnLogOut_Click"></asp:LinkButton>
                     <% } else { %>
-                        <a href="/Pages/Auth/Login.aspx" class="btn btn-outline-light">Ingresar</a>
-                        <a href="/Pages/Auth/Register.aspx" class="btn btn-light">Registrarse</a>
+                        <a href="/Pages/Auth/Login.aspx" class="btn btn-outline-light shadow">Ingresar</a>
+                        <a href="/Pages/Auth/Register.aspx" class="btn btn-light shadow">Registrarse</a>
                     <% } %>
+
                     <div id="Carousel" class="col-2 carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <% if (Pokemons.Count > 0) { %>
@@ -79,7 +90,32 @@
         </main>
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="container-fluid bg-danger py-4">
+            <nav class="navbar navbar-expand container gap-3">
+                <ul class="navbar-nav d-flex flex-column w-100">
+                    <li class="nav-item">
+                        <a href="/Default.aspx" class="nav-link fs-5 d-inline-block">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/Pages/User/Contact.aspx" class="nav-link fs-5 d-inline-block">CONTACTO</a>
+                    </li>
+                </ul>
+                <a href="/Default.aspx" class="navbar-brand text-white" style="transform: rotate(-90deg); font-size: 60px;">
+                    <i class="bi bi-circle-half"></i>
+                </a>
+            </nav>
+            <p class="text-light text-center mt-2" style="margin: 0;">
+                Copyright © <%: DateTime.Now.Year %> <i>Pokédex Web</i>. Todos los derechos 
+                reservados.
+            </p>
+            <p class="text-light text-center mt-2" style="margin: 0;">
+                Pokémon y todos los nombres relacionados son propiedad de Nintendo, 
+                Game Freak y Creatures Inc.
+            </p>
+            <p class="text-light text-center mt-2" style="margin: 0;">
+                Esta aplicación de Pokédex es un proyecto no oficial y no está asociado de 
+                ninguna manera con las empresas mencionadas anteriormente.
+            </p>
         </footer>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

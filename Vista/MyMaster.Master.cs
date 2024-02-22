@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using Vista.Pages.User;
 
 namespace Vista
 {
@@ -27,7 +28,7 @@ namespace Vista
         protected void Page_Init(object sender, EventArgs e)
         {
             // Si no es alguna de las páginas predeterminadas...
-            if (!(Page is Login || Page is Register || Page is Default || Page is PokeDetail))
+            if (!(Page is Login || Page is Register || Page is Default || Page is PokeDetail || Page is Contact))
             {
                 // y no hay una sesión activa, se obliga a loguear.
                 if ((Session["UserSession"] == null))
