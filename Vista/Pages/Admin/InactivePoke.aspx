@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Admin - Inactivos</title>
     <!-- Estilos para la paginación -->
-    <link rel="stylesheet" href="Content/CSS/pagination.css" />
+    <link rel="stylesheet" href="/Content/CSS/pagination.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -150,5 +150,5 @@
         </div>
     </div>
 
-    <script src="Content/JS/lightbulb.js"></script>
+    <script src="/Content/JS/lightbulb.js"></script>
 </asp:Content>

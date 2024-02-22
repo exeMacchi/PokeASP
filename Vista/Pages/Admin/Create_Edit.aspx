@@ -5,7 +5,7 @@
     <% } else { %>
             <title>Agregar nuevo Pokemon</title>
     <% } %> 
-    <link rel="stylesheet" href="Content/CSS/DropDownList.css"/>
+    <link rel="stylesheet" href="/Content/CSS/DropDownList.css"/>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -90,7 +90,7 @@
                     <% } else { %>
                         <asp:Button ID="btnAdd" runat="server" Text="AGREGAR" CssClass="btn btn-primary w-50" OnClick="btnAdd_Click"/>
                     <% } %>
-                    <a href="Admin.aspx" class="btn btn-danger w-50">CANCELAR</a>
+                    <a href="/Pages/Admin/Admin.aspx" class="btn btn-danger w-50">CANCELAR</a>
                 </div>
             </div>
         </ContentTemplate>

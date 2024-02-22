@@ -33,7 +33,7 @@ namespace Vista
                 if ((Session["UserSession"] == null))
                 {
                     Session["AlertMessage"] = "No tienes los permisos necesarios para ingresar en esa página.";
-                    Response.Redirect("Login.aspx?alert=true");
+                    Response.Redirect("/Pages/Auth/Login.aspx?alert=true");
                 }
             }
         }
@@ -44,7 +44,7 @@ namespace Vista
         protected void btnLogOut_Click(object sender, EventArgs e)
         {
             Session.Clear();
-            Response.Redirect("Default.aspx");
+            Response.Redirect("/Default.aspx");
         }
     }
 }

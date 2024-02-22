@@ -18,7 +18,8 @@ namespace Vista
                 // Middleware admin
                 if (!((Usuario)Session["userSession"]).Admin)
                 {
-                    Response.Redirect("Login.aspx", false);
+                    Session["AlertMessage"] = "No tienes los permisos necesarios para ingresar en esa página.";
+                    Response.Redirect("/Pages/Auth/Login.aspx?alert=true");
                 }
 
                 try
@@ -163,7 +164,7 @@ namespace Vista
 
                 PokemonBBL.UpdatePokemon(uPoke);
                 Session["AlertMessage"] = "El Pokemon fue modificado en la base de datos de forma exitosa.";
-                Response.Redirect("Admin.aspx?alert=success", false);
+                Response.Redirect("/Pages/Admin/Admin.aspx?alert=success", false);
             }
             catch (Exception ex)
             {
@@ -203,7 +204,7 @@ namespace Vista
 
                 PokemonBBL.CreatePokemon(newPoke);
                 Session["AlertMessage"] = "El Pokemon fue creado en la base de datos de forma exitosa!";
-                Response.Redirect("Admin.aspx?alert=success", false);
+                Response.Redirect("/Pages/Admin/Admin.aspx?alert=success", false);
             }
             catch (Exception ex)
             {

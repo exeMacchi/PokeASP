@@ -23,7 +23,7 @@
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h3 class="card-title"><%# Eval("Name") %></h3>
                             <p class="card-text"><%# Eval("Description") %></p>
-                            <a href="PokeDetail.aspx?id=<%# Eval("ID") %>" class="btn btn-primary">Ver detalle</a>
+                            <a href="/Pages/User/PokeDetail.aspx?id=<%# Eval("ID") %>" class="btn btn-primary">Ver detalle</a>
                         </div>
                     </div>
                 </ItemTemplate>

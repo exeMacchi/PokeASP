@@ -27,7 +27,7 @@ namespace Vista
                 if (user.ID != 0)
                 {
                     Session["UserSession"] = user;
-                    Response.Redirect("Default.aspx", false);
+                    Response.Redirect("/Default.aspx", false);
                 }
                 else
                 {

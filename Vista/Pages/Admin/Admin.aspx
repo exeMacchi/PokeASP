@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Admin - PokeApp</title>
     <!-- Estilos para la paginación -->
-    <link rel="stylesheet" href="Content/CSS/pagination.css" />
+    <link rel="stylesheet" href="/Content/CSS/pagination.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -46,9 +46,9 @@
 
         <!-- Enlaces -->
         <div class="col-6 d-flex justify-content-end gap-3">
-            <asp:HyperLink ID="inactivePokemons" runat="server" NavigateUrl="~/InactivePoke.aspx"
+            <asp:HyperLink ID="inactivePokemons" runat="server" NavigateUrl="~/Pages/Admin/InactivePoke.aspx"
                            CssClass="btn btn-warning fs-5 w-50" Visible="false">Lista Pokémon inactivos</asp:HyperLink>
-            <a href="Create_Edit.aspx" class="btn btn-danger fs-5 w-50">Agregar nuevo Pokémon</a>
+            <a href="/Pages/Admin/Create_Edit.aspx" class="btn btn-danger fs-5 w-50">Agregar nuevo Pokémon</a>
         </div>
     </div>
 

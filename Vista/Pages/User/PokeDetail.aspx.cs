@@ -20,7 +20,7 @@ namespace Vista
                 // Middleware necesario por si se entra a esta página desde la URL
                 if (Request.QueryString["id"] == null)
                 {
-                    Response.Redirect("Default.aspx");
+                    Response.Redirect("/Default.aspx");
                 }
 
                 int id = int.Parse(Request.QueryString["id"]);
