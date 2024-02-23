@@ -1,0 +1,8 @@
+﻿.nav-link {
+    color: var(--bs-light);
+    transition: color 0.5s ease-out;
+}
+
+.nav-link:hover {
+    color: var(--bs-grey-600);
+}

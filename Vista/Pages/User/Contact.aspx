@@ -3,6 +3,7 @@
     <title>Contacto</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- Alerta -->
     <div class="row justify-content-center">
         <div class="col-6">
             <asp:Panel ID="contactAlert" runat="server" CssClass="alert alert-success mt-3" Visible="false">

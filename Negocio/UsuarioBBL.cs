@@ -11,6 +11,12 @@ namespace Negocio
 {
     public class UsuarioBBL
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static Usuario GetUser(string email, string password)
         {
             Datos data = new Datos();
@@ -34,6 +40,56 @@ namespace Negocio
                     user.Admin = (bool)data.Reader["Role"];
                 }
                 return user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
+
+        public static int GetUserIDByEmail(string email)
+        {
+            Datos data = new Datos();
+            string query = $"SELECT Id FROM USUARIOS WHERE Email = @Email;";
+            try
+            {
+                data.SetQuery(query);
+                data.SetParam("@Email", email);
+                data.ExecuteRead();
+
+                if (data.Reader.Read())
+                {
+                    return (int)data.Reader["ID"];
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                data.CloseConnection();
+            }
+        }
+
+        public static void UpdateUserPass(int id, string newPass)
+        {
+            Datos data = new Datos();
+            string query = $"UPDATE USUARIOS SET Clave = @Pass WHERE Id = @ID";
+            try
+            {
+                data.SetQuery(query);
+                data.SetParam("@Pass", newPass);
+                data.SetParam("@ID", id);
+                data.ExecuteNonQuery();
             }
             catch (Exception ex)
             {

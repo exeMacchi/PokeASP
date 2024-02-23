@@ -15,13 +15,6 @@ namespace Vista
         {
             if (!IsPostBack)
             {
-                // Middleware admin
-                if (!((Usuario)Session["UserSession"]).Admin)
-                {
-                    Session["AlertMessage"] = "No tienes los permisos necesarios para ingresar en esa página.";
-                    Response.Redirect("/Pages/Auth/Login.aspx?alert=true");
-                }
-
                 try
                 {
                     Session["Pokemons"] = PokemonBBL.GetPokemons();

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
+using Vista.Pages.Auth;
 using Vista.Pages.User;
 
 namespace Vista
@@ -28,13 +29,21 @@ namespace Vista
         protected void Page_Init(object sender, EventArgs e)
         {
             // Si no es alguna de las páginas predeterminadas...
-            if (!(Page is Login || Page is Register || Page is Default || Page is PokeDetail || Page is Contact))
+            if (!(Page is Login || Page is Register || Page is Default ||
+                  Page is PokeDetail || Page is Contact || Page is ForgottenPass))
             {
-                // y no hay una sesión activa, se obliga a loguear.
+                // y no hay una sesión activa, se obliga a loguear (Middleware user)
                 if ((Session["UserSession"] == null))
                 {
                     Session["AlertMessage"] = "No tienes los permisos necesarios para ingresar en esa página.";
-                    Response.Redirect("/Pages/Auth/Login.aspx?alert=true");
+                    Response.Redirect("/Pages/Auth/Login.aspx?alert=error");
+                }
+                // o hay una sesión activa, pero no es un administrador, se obliga a loguear. (Middleware admin)
+                else if ((Page is Admin || Page is Create_Edit || Page is InactivePoke) &&
+                         (!((Usuario)Session["UserSession"]).Admin))
+                {
+                    Session["AlertMessage"] = "No tienes los permisos necesarios para ingresar en esa página.";
+                    Response.Redirect("/Pages/Auth/Login.aspx?alert=error");
                 }
             }
         }

@@ -7,13 +7,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <% if (Request.QueryString["alert"] != null) { %>
-        <% if ((string)Request.QueryString["alert"] == "success") { %>
-            <asp:Panel ID="adminAlert" runat="server" CssClass="alert alert-success my-4">
+        <% if (Request.QueryString["alert"] == "success") { %>
+            <asp:Panel ID="adminSuccessAlert" runat="server" CssClass="alert alert-success my-4">
                 <h2 class="alert-heading fs-2">¡Éxito!</h2>
                 <p><%:(string)Session["AlertMessage"] %></p>
             </asp:Panel>
-        <% } else if ((string)Request.QueryString["alert"] == "error") { %>
-
+        <% } else if (Request.QueryString["alert"] == "error") { %>
+            <asp:Panel ID="adminErrorAlert" runat="server" CssClass="alert alert-danger my-4">
+                <h2 class="alert-heading fs-2">Error</h2>
+                <p><%:(string)Session["AlertMessage"] %></p>
+            </asp:Panel>
         <% } %>
     <% } %>
 

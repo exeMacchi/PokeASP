@@ -7,10 +7,17 @@
     <div class="row justify-content-center mt-3">
         <div class="col-5">
             <% if (Request.QueryString["alert"] != null) { %>
-                <asp:Panel ID="loginAlert" runat="server" CssClass="alert alert-danger my-1">
-                    <h2 class="alert-heading fs-2">Error</h2>
-                    <p><%:(string)Session["AlertMessage"] %></p>
-                </asp:Panel>
+                <% if (Request.QueryString["alert"] == "error") { %>
+                    <asp:Panel ID="loginErrorAlert" runat="server" CssClass="alert alert-danger my-1">
+                        <h2 class="alert-heading fs-2">Error</h2>
+                        <p><%:(string)Session["AlertMessage"] %></p>
+                    </asp:Panel>
+                <% } else if (Request.QueryString["alert"] == "success") { %>
+                    <asp:Panel ID="loginSuccessAlert" runat="server" CssClass="alert alert-success my-1">
+                        <h2 class="alert-heading fs-2">¡Éxito!</h2>
+                        <p><%:(string)Session["AlertMessage"] %></p>
+                    </asp:Panel>
+                <% } %>
             <% } %>
             <h1 class="text-center">Ingresar a su cuenta</h1>
         </div>
@@ -42,7 +49,9 @@
                              CssClass="form-control" Required="true" MaxLength="50"></asp:TextBox>
             </div>
             <div>
-                <a href="#" class="link-primary link-underline-opacity-0">¿Olvidaste tu contraseña?</a>
+                <a href="/Pages/Auth/ForgottenPass.aspx"
+                   class="link-primary link-underline-opacity-0"
+                   tabindex="-1">¿Olvidaste tu contraseña?</a>
             </div>
         </div>
     </div>

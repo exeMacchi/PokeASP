@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\header.css" />
+    <Content Include="Content\JS\togglePassword.js" />
     <Content Include="Pages\Admin\Admin.aspx" />
     <Content Include="Content\CSS\DropDownList.css" />
     <Content Include="Content\CSS\icons.css" />
@@ -77,6 +79,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\InactivePoke.aspx" />
+    <Content Include="Pages\Auth\ForgottenPass.aspx" />
     <Content Include="Pages\Auth\Login.aspx" />
     <Content Include="Pages\User\Contact.aspx" />
     <Content Include="Pages\User\PokeDetail.aspx" />
@@ -116,6 +119,13 @@
     </Compile>
     <Compile Include="Pages\Admin\InactivePoke.aspx.designer.cs">
       <DependentUpon>InactivePoke.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Auth\ForgottenPass.aspx.cs">
+      <DependentUpon>ForgottenPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Auth\ForgottenPass.aspx.designer.cs">
+      <DependentUpon>ForgottenPass.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Auth\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
