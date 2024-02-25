@@ -12,7 +12,13 @@ namespace Vista.Pages.Auth
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                // No puedo utilizar btnSubmit.Enabled = false porque la habilitación del
+                // botón también se maneja desde el cliente; por ende, es más fácil
+                // gestionando el atributo en sí.
+                btnSubmit.Attributes["disabled"] = "true";
+            }
         }
 
         protected void btnSend_Click(object sender, EventArgs e)

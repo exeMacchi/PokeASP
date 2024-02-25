@@ -38,7 +38,7 @@
                 <div class="d-flex align-items-center gap-3">
                     <asp:TextBox ID="txtFirstPass" runat="server" CssClass="form-control"
                                  TextMode="Password" ClientIDMode="Static" MaxLength="50"
-                                 Required="true"></asp:TextBox>
+                                 Required="true" oninput="checkPasswordsMatch()"></asp:TextBox>
                     <button id="btnFirstPass"
                             class="border border-1 p-1 px-2 rounded-1 bg-light"
                             type="button" 
@@ -61,7 +61,7 @@
                 <div class="d-flex align-items-center gap-3">
                     <asp:TextBox ID="txtSecondPass" runat="server" CssClass="form-control"
                                  TextMode="Password" ClientIDMode="Static" MaxLength="50"
-                                 Required="true"></asp:TextBox>
+                                 Required="true" oninput="checkPasswordsMatch()"></asp:TextBox>
                     <button id="btnSecondPass"
                             class="border border-1 p-1 px-2 rounded-1 bg-light"
                             type="button"  
@@ -70,6 +70,9 @@
                         <i class="bi bi-eye-slash"></i>
                     </button>
                 </div>
+                <asp:Label ID="lbPassAlert" runat="server" CssClass="text-danger" ClientIDMode="Static" style="display:none;">
+                    Las contraseñas no coinciden.
+                </asp:Label>
             </div>
         </div>
 
@@ -77,11 +80,12 @@
         <div class="row justify-content-center my-4">
             <div class="col-6 d-flex justify-content-end">
                 <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-danger w-50" 
-                            Text="Confirmar" OnClick="btnSubmit_Click"/>
+                            Text="Confirmar" ClientIDMode="Static" OnClick="btnSubmit_Click"/>
             </div>
         </div>
 
         <script src="/Content/JS/togglePassword.js"></script>
+        <script src="/Content/JS/forgottenPass.js"></script>
 
     <% // RECUPERAR CUENTA %>
     <% } else { %>

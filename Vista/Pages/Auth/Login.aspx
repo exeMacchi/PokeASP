@@ -4,7 +4,13 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row justify-content-center mt-3">
+    <div class="row justify-content-center my-3">
+        <div class="col-5">
+            <h1 class="text-center">Ingresar a su cuenta</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-2">
         <div class="col-5">
             <% if (Request.QueryString["alert"] != null) { %>
                 <% if (Request.QueryString["alert"] == "error") { %>
@@ -19,7 +25,6 @@
                     </asp:Panel>
                 <% } %>
             <% } %>
-            <h1 class="text-center">Ingresar a su cuenta</h1>
         </div>
     </div>
 
@@ -56,10 +61,18 @@
         </div>
     </div>
 
-    <div class="row my-3 justify-content-end">
-        <div class="col-5">
+    <div class="row mt-3 justify-content-center">
+        <div class="col-5 d-flex justify-content-end">
             <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-danger w-25"
                         Text="Ingresar" OnClick="btnLogin_Click" />
+        </div>
+    </div>
+
+    <div class="row justify-content-center my-3">
+        <div class="col-5 d-flex justify-content-end">
+            <a href="/Pages/Auth/Register.aspx"
+               class="link-primary link-underline-opacity-0"
+               tabindex="-1">¿No tienes una cuenta? ¡Regístrate!</a>
         </div>
     </div>
 </asp:Content>
